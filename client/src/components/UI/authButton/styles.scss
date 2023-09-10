@@ -1,0 +1,15 @@
+.logInButton{
+    width: 530px;
+    height: 60px;
+    background-color: #bea1ef;
+    font-size: 32px;
+    font-weight: 500;
+    border-radius: 20px;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover{
+        background-color:#ac86ee
+    }
+}

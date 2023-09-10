@@ -1,0 +1,15 @@
+.auth{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./assets/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .auth__rocket{
+        width: 500px;
+        height: 100%;
+    }
+}

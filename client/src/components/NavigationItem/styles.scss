@@ -1,0 +1,19 @@
+.navigation__item{
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 20px;
+    max-width: 200px;
+    .navigation__item-img{
+        height: 32px;
+        width: 32px;
+    }
+    .navigation__item-text{
+        font-size: 24px;
+        font-weight: 800;
+    }
+    &:hover{
+        background-color: #afafaf;
+    }
+}

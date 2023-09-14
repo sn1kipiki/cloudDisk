@@ -19,14 +19,18 @@ router.post("/registration", [
             return res.status(400).json({message:"Uncorrect request", errors})
         }
 
-        const {email, password} = req.body
+        const {email, username, password} = req.body
 
-        const candidate = await User.findOne({email})
-        if(candidate){
+        const candidateEmail = await User.findOne({email})
+        if(candidateEmail){
             return res.status(400).json({message: `User with email ${email} already exist`})
         }
+        const candidateUsername = await User.findOne({username})
+        if(candidateUsername){
+            return res.status(400).json({message: `User with username ${username} already exist`})
+        }
         const hashPassword = await bcrypt.hash(password, 8)
-        const user = new User({email, password: hashPassword})
+        const user = new User({email, username, password: hashPassword})
         await user.save()
         return res.json({message:"User was created"})
     } catch (error) {
@@ -53,6 +57,7 @@ try {
         user:{
             id: user.id,
             email: user.email,
+            username: user.username,
             diskSpace: user.diskSpace,
             usedSpace: user.usedSpace,
             avatar: user.avatar

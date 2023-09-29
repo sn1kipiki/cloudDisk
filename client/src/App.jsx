@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 
 import {BrowserRouter, Route, Routes} from "react-router-dom"
-import "./assets/reset.scss"
+import "./assets/styles/reset.scss"
+import "./assets/styles/global.scss"
 import Main from "./pages/Main/Main";
 import LoginPage from "./pages/Auth/LoginPage/LoginPage";
 import {useDispatch, useSelector} from "react-redux";
@@ -29,14 +30,15 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/registration" element={<RegistrationPage/>} />
-        </Routes>
-        :
-        <Routes>
           <Route path="/dashbord" element={<Dashbord/>} />
           <Route path="/files" element={<Files/>} />
           <Route path="/favorite" element={<Favorite/>} />
           <Route path="/bin" element={<Bin/>} />
           <Route path="/settings" element={<Settings/>} />
+        </Routes>
+        :
+        <Routes>
+          
         </Routes>
         
       }

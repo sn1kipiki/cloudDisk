@@ -1,8 +1,17 @@
 import React from 'react'
-
+import SearchPanel from '../../components/SearchPanel/SearchPanel'
+import Sidebar from '../../components/SideBar/Sidebar'
+import './styles.scss'
 function Dashbord() {
   return (
-    <div>Dashbord</div>
+    <>
+    
+    <Sidebar/>
+    <div className='center-area'>
+      
+      <SearchPanel/>
+    </div>
+    </>
   )
 }
 

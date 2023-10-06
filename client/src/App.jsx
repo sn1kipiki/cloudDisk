@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom"
 import "./assets/styles/reset.scss"
 import "./assets/styles/global.scss"
 import Main from "./pages/Main/Main";
@@ -30,15 +30,16 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/registration" element={<RegistrationPage/>} />
+          <Route path="*" element={<Navigate to="/login" />}/>
+        </Routes>
+        :
+        <Routes>
           <Route path="/dashbord" element={<Dashbord/>} />
           <Route path="/files" element={<Files/>} />
           <Route path="/favorite" element={<Favorite/>} />
           <Route path="/bin" element={<Bin/>} />
           <Route path="/settings" element={<Settings/>} />
-        </Routes>
-        :
-        <Routes>
-          
+          <Route path="*" element={<Navigate to="/dashbord" />}/>
         </Routes>
         
       }

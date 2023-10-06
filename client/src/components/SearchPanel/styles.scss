@@ -1,7 +1,7 @@
 .searchPanel{
     display: flex;
-    max-width: 92.4%;
-    margin: 0 auto;
+    // position: absolute;
+    // z-index: 10;
     justify-content: space-between;
     margin-top: 4rem;
     .searchPanel__buttons{

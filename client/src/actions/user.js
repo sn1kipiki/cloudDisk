@@ -1,11 +1,10 @@
 import axios from 'axios'
 import {setUser} from "../reducers/userReducer";
 
-export const registration = async (email, username, password) => {
+export const registration = async (email, password) => {
     try {
         const response = await axios.post(`http://localhost:5000/api/auth/registration`, {
             email,
-            username,
             password
         })
         alert(response.data.message)

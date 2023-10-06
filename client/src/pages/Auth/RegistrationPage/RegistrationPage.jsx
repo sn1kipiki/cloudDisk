@@ -15,10 +15,10 @@ function RegistrationPage() {
     <div className='auth'>
          <div className='auth-form'>
          <img src={logoImg} alt="logo" className='auth-form__logo'/>
-          <Input value={email} onChangeHandler={setEmail} text={"Email"} iconImg={emailImg}/>
-          <Input value={username} onChangeHandler={setUsername} text={"Username"} iconImg={userImg}/>
-         <Input value={password} onChangeHandler={setPassword} text={"Password"} iconImg={passwordImg}/>
-         <button className='authButton' onClick={()=> registration(email, username, password)}>Sign up</button>
+          <Input value={email} onChangeHandler={setEmail} text={"Email"}  iconImg={emailImg}/>
+          {/* <Input value={username} onChangeHandler={setUsername} text={"Username"} iconImg={userImg}/> */}
+         <Input value={password} onChangeHandler={setPassword} text={"Password"} type={"password"} iconImg={passwordImg}/>
+         <button className='authButton' onClick={()=> registration(email, password)}>Sign up</button>
          
         </div>
     </div>

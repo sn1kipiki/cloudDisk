@@ -1,8 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import SearchPanel from '../../components/SearchPanel/SearchPanel'
+import {getFiles} from "../../actions/file";
 import Sidebar from '../../components/SideBar/Sidebar'
 import './styles.scss'
+import FileItem from '../../components/FileItem/FileItem'
+import FileList from '../../components/FileList/FileList'
 function Dashbord() {
+  const dispatch = useDispatch()
+  const currentDir = useSelector(state => state.files.currentDir)
+
+  useEffect(() => {
+      dispatch(getFiles(currentDir))
+  }, [currentDir])
   return (
     <>
     
@@ -10,6 +20,7 @@ function Dashbord() {
     <div className='center-area'>
       
       <SearchPanel/>
+      <FileList/>
     </div>
     </>
   )

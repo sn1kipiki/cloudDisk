@@ -6,11 +6,13 @@ const jwt = require("jsonwebtoken")
 const {check, validationResult} = require("express-validator")
 const router = new Router()
 const authMiddleware = require('../middleware/auth.middleware')
+const fileService = require("../services/fileService")
+const File = require('../models/File')
 
 router.post('/registration',
     [
         check('email', "Uncorrect email").isEmail(),
-        check('password', 'Password must be longer than 3 and shorter than 12').isLength({min:8})
+        check('password', 'Password must be longer than 3 and shorter than 12').isLength({min:3, max:12})
     ],
     async (req, res) => {
     try {
@@ -18,19 +20,15 @@ router.post('/registration',
         if (!errors.isEmpty()) {
             return res.status(400).json({message: "Uncorrect request", errors})
         }
-        const {email, username, password} = req.body
-
-        const candidateEmail = await User.findOne({email})
-        if(candidateEmail){
+        const {email, password} = req.body
+        const candidate = await User.findOne({email})
+        if(candidate) {
             return res.status(400).json({message: `User with email ${email} already exist`})
         }
-        const candidateUsername = await User.findOne({username})
-        if(candidateUsername){
-            return res.status(400).json({message: `User with username ${username} already exist`})
-        }
         const hashPassword = await bcrypt.hash(password, 8)
-        const user = new User({email, username, password: hashPassword})
+        const user = new User({email, password: hashPassword})
         await user.save()
+        await fileService.createDir(new File({user:user.id, name: ''}))
         res.json({message: "User was created"})
     } catch (e) {
         console.log(e)
@@ -57,7 +55,6 @@ router.post('/login',
                 user: {
                     id: user.id,
                     email: user.email,
-                    username: user.username,
                     diskSpace: user.diskSpace,
                     usedSpace: user.usedSpace,
                     avatar: user.avatar
@@ -79,7 +76,6 @@ router.get('/auth', authMiddleware,
                 user: {
                     id: user.id,
                     email: user.email,
-                    username: user.username,
                     diskSpace: user.diskSpace,
                     usedSpace: user.usedSpace,
                     avatar: user.avatar
